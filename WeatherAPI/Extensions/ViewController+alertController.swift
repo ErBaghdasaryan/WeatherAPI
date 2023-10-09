@@ -3,7 +3,10 @@
 import UIKit
 
 extension ViewController {
-    func presentSearchAlertController(withTitle title: String?, message: String?, style: UIAlertController.Style) {
+    func presentSearchAlertController(withTitle title: String?,
+                                      message: String?,
+                                      style: UIAlertController.Style,
+                                      completionHandler: @escaping (String) -> Void) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: style)
         ac.addTextField { tf in
             let cities = ["San Francisco", "Moscow", "New York", "Stambul", "Viena"]
@@ -13,7 +16,8 @@ extension ViewController {
             let textField = ac.textFields?.first
             guard let cityName = textField?.text else { return }
             if cityName != "" {
-                print("search info for the \(cityName)")
+                let newCityName = cityName.split(separator: " ").joined(separator: "%20")
+                completionHandler(cityName)
             }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
