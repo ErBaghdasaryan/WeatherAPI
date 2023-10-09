@@ -1,0 +1,37 @@
+# Xcode
+.DS_Store
+xcuserdata
+
+# Swift Package Manager
+.build
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Checkouts
+Carthage/Build
+
+# Compiled source
+*.o
+*.pyc
+*.swp
+*.class
+
+# Generated files
+*.pbxproj
+*.xcworkspace
+.idea/
+*.hmap
+
+# Local configuration files
+*.xcuserstate
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+Package.pins
+Package.resolved
+
