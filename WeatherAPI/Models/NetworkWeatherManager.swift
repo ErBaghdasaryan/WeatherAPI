@@ -1,6 +1,6 @@
 //  Created by Er Baghdasaryan on 09.10.23.
 
-import UIKit
+import Foundation
 
 struct NetworkWeatherManager {
     
@@ -11,10 +11,20 @@ struct NetworkWeatherManager {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let data = data {
-                let dataString = String(data: data, encoding: .utf8)
-                print(dataString!)
+                self.parseJSON(data: data)
             }
         }
         task.resume()
+    }
+    
+    func parseJSON(data: Data) {
+        let decoder = JSONDecoder()
+        do {
+           let currentWeatherData = try decoder.decode(CurrentWeatherData.self, from: data)
+            print(currentWeatherData.main.temp)
+
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
 }
